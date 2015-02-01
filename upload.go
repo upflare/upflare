@@ -27,8 +27,8 @@ func (u *Upload) Limit(limit int64) *Upload {
 	return u
 }
 
-func (u *Upload) Resize(width, height int64, crop bool) *Upload {
-	u.resize = NewResize(width, height, crop)
+func (u *Upload) Resize(resize *Resize) *Upload {
+	u.resize = resize
 	return u
 }
 

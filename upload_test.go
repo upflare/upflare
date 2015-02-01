@@ -70,7 +70,7 @@ func TestUpload(t *testing.T) {
 		u.nonce = c.nonce
 
 		if c.width != 0 || c.height != 0 || c.crop {
-			u.Resize(c.width, c.height, c.crop)
+			u.Resize(NewResize(c.width, c.height, c.crop))
 		}
 
 		if c.limit != 0 {

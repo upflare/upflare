@@ -62,6 +62,9 @@ func NewResize(width, height int64, crop bool) *Resize {
 	if height < 0 {
 		height = 0
 	}
+	if width == 0 && height == 0 && !crop {
+		return nil
+	}
 	return &Resize{
 		width:  width,
 		height: height,

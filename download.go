@@ -27,8 +27,8 @@ type Download struct {
 	filename string
 }
 
-func (d *Download) Resize(width, height int64, crop bool) *Download {
-	d.resize = NewResize(width, height, crop)
+func (d *Download) Resize(resize *Resize) *Download {
+	d.resize = resize
 	return d
 }
 

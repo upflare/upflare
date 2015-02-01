@@ -136,7 +136,7 @@ func TestDownload(t *testing.T) {
 		}
 
 		if c.width != 0 || c.height != 0 || c.crop {
-			d.Resize(c.width, c.height, c.crop)
+			d.Resize(NewResize(c.width, c.height, c.crop))
 		}
 
 		if c.filename != "" {

@@ -1,8 +1,10 @@
 package upflare
 
 import (
+	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
+	"io"
 	"time"
 )
 
@@ -61,9 +63,15 @@ func (u *Upload) String() string {
 }
 
 func (a *App) Upload() (*Upload, error) {
+
+	nonce := make([]byte, 16)
+	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
+		panic(err)
+	}
+
 	return &Upload{
 		App:       a,
 		timestamp: time.Now().Unix(),
-		nonce:     "",
+		nonce:     base64.URLEncoding.EncodeToString(nonce),
 	}, nil
 }

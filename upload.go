@@ -9,16 +9,16 @@ import (
 type Upload struct {
 	*App
 
-	limit  int64
-	mimes  []string
-	resize *Resize
+	limit        int64
+	contentTypes []string
+	resize       *Resize
 
 	timestamp int64
 	nonce     string
 }
 
-func (u *Upload) ContentTypes(mimes ...string) *Upload {
-	u.mimes = mimes
+func (u *Upload) ContentTypes(contentTypes ...string) *Upload {
+	u.contentTypes = contentTypes
 	return u
 }
 
@@ -39,17 +39,17 @@ func (u *Upload) String() string {
 	}
 
 	data := &struct {
-		Timestamp int64    `json:"timestamp"`
-		Nonce     string   `json:"nonce"`
-		Limit     int64    `json:"limit,omitempty"`
-		Mimes     []string `json:"content_types,omitempty"`
-		Resize    string   `json:"resize,omitempty"`
+		Timestamp    int64    `json:"timestamp"`
+		Nonce        string   `json:"nonce"`
+		Limit        int64    `json:"limit,omitempty"`
+		ContentTypes []string `json:"content_types,omitempty"`
+		Resize       string   `json:"resize,omitempty"`
 	}{
-		Timestamp: u.timestamp,
-		Nonce:     u.nonce,
-		Limit:     u.limit,
-		Mimes:     u.mimes,
-		Resize:    resize,
+		Timestamp:    u.timestamp,
+		Nonce:        u.nonce,
+		Limit:        u.limit,
+		ContentTypes: u.contentTypes,
+		Resize:       resize,
 	}
 
 	encoded, err := json.Marshal(data)

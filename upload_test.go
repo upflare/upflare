@@ -9,8 +9,8 @@ var uploads = []struct {
 	key    string
 	secret string
 
-	limit int64
-	mimes []string
+	limit        int64
+	contentTypes []string
 
 	width  int64
 	height int64
@@ -44,13 +44,13 @@ var uploads = []struct {
 	},
 
 	{
-		key:    "key",
-		secret: "secret",
-		limit:  5 << 20,
-		width:  60,
-		crop:   true,
-		mimes:  []string{"image/jpeg", "image/png"},
-		path:   "/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODAsImNvbnRlbnRfdHlwZXMiOlsiaW1hZ2UvanBlZyIsImltYWdlL3BuZyJdLCJyZXNpemUiOiJ3NjAtYyJ9/jx0Vzf8M",
+		key:          "key",
+		secret:       "secret",
+		limit:        5 << 20,
+		width:        60,
+		crop:         true,
+		contentTypes: []string{"image/jpeg", "image/png"},
+		path:         "/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODAsImNvbnRlbnRfdHlwZXMiOlsiaW1hZ2UvanBlZyIsImltYWdlL3BuZyJdLCJyZXNpemUiOiJ3NjAtYyJ9/jx0Vzf8M",
 	},
 }
 
@@ -77,8 +77,8 @@ func TestUpload(t *testing.T) {
 			u.Limit(c.limit)
 		}
 
-		if c.mimes != nil {
-			u.ContentTypes(c.mimes...)
+		if c.contentTypes != nil {
+			u.ContentTypes(c.contentTypes...)
 		}
 
 		p := u.String()

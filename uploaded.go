@@ -47,13 +47,14 @@ func (a *App) Uploaded(data []byte) (*Uploaded, error) {
 	}
 
 	values := map[string]interface{}{
-		"key":       value.Key,
-		"id":        value.ID,
-		"filename":  value.Filename,
-		"hash":      value.Hash,
-		"size":      value.Size,
-		"timestamp": value.Timestamp,
-		"nonce":     value.Nonce,
+		"key":          value.Key,
+		"id":           value.ID,
+		"filename":     value.Filename,
+		"hash":         value.Hash,
+		"size":         value.Size,
+		"content_type": value.ContentType,
+		"timestamp":    value.Timestamp,
+		"nonce":        value.Nonce,
 	}
 	if value.Width > 0 {
 		values["width"] = value.Width

@@ -59,7 +59,7 @@ func (u *Upload) String() string {
 		panic(err)
 	}
 
-	return u.Do("POST", base64.URLEncoding.EncodeToString(encoded))
+	return u.Do("POST", "upload", base64.URLEncoding.EncodeToString(encoded))
 }
 
 func (a *App) Upload() (*Upload, error) {

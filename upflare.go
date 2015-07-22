@@ -26,7 +26,12 @@ func (a *App) Sign(base []byte) string {
 	return base64.URLEncoding.EncodeToString(signature[len(signature)-6:])
 }
 
-func (a *App) Do(method, data string) string {
-	signature := a.Sign([]byte(fmt.Sprintf("%s /%s/%s", strings.ToUpper(method), a.key, data)))
-	return fmt.Sprintf("/%s/%s/%s", a.key, data, signature)
+func (a *App) Do(method, action, data string) string {
+	if action == "" {
+		signature := a.Sign([]byte(fmt.Sprintf("%s /%s/%s", strings.ToUpper(method), a.key, data)))
+		return fmt.Sprintf("/%s/%s/%s", a.key, data, signature)
+	} else {
+		signature := a.Sign([]byte(fmt.Sprintf("%s /%s/%s/%s", strings.ToUpper(method), action, a.key, data)))
+		return fmt.Sprintf("/%s/%s/%s/%s", action, a.key, data, signature)
+	}
 }

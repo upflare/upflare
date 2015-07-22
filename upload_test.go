@@ -25,14 +25,14 @@ var uploads = []struct {
 	{
 		key:    "key",
 		secret: "secret",
-		path:   "/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIn0=/-uL2Pwqn",
+		path:   "/upload/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIn0=/whCP7iM9",
 	},
 
 	{
 		key:    "key",
 		secret: "secret",
 		limit:  5 << 20,
-		path:   "/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODB9/xidLPwFG",
+		path:   "/upload/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODB9/EU8Ou6Zi",
 	},
 
 	{
@@ -40,7 +40,7 @@ var uploads = []struct {
 		secret: "secret",
 		limit:  5 << 20,
 		height: 60,
-		path:   "/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODAsInJlc2l6ZSI6Img2MCJ9/R7psRNmJ",
+		path:   "/upload/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODAsInJlc2l6ZSI6Img2MCJ9/WsUADIFm",
 	},
 
 	{
@@ -50,7 +50,7 @@ var uploads = []struct {
 		width:        60,
 		crop:         true,
 		contentTypes: []string{"image/jpeg", "image/png"},
-		path:         "/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODAsImNvbnRlbnRfdHlwZXMiOlsiaW1hZ2UvanBlZyIsImltYWdlL3BuZyJdLCJyZXNpemUiOiJ3NjAtYyJ9/jx0Vzf8M",
+		path:         "/upload/key/eyJ0aW1lc3RhbXAiOjAsIm5vbmNlIjoiIiwibGltaXQiOjUyNDI4ODAsImNvbnRlbnRfdHlwZXMiOlsiaW1hZ2UvanBlZyIsImltYWdlL3BuZyJdLCJyZXNpemUiOiJ3NjAtYyJ9/ZB-JOm11",
 	},
 }
 

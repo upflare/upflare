@@ -2,7 +2,6 @@ package upflare
 
 import (
 	"encoding/base64"
-	"errors"
 	"github.com/PuerkitoBio/purell"
 	"net/url"
 	"regexp"
@@ -12,10 +11,6 @@ var (
 	FILENAME_PATTERN = regexp.MustCompile(`^[A-Za-z0-9\-_]*(\.[A-Za-z0-9\-_]+)+$`)
 	HASH_PATTERN     = regexp.MustCompile(`^[0-9a-f]{40}$`)
 	UPLOAD_PATTERN   = regexp.MustCompile(`^[A-Za-z0-9]{32}$`)
-
-	ErrInvalidURL    = errors.New("upflare: invalid url")
-	ErrInvalidHash   = errors.New("upflare: invalid hash")
-	ErrInvalidUpload = errors.New("upflare: invalid upload")
 )
 
 type Download struct {
@@ -50,7 +45,7 @@ func (d *Download) String() string {
 	if d.filename != "" {
 		data += "," + d.filename
 	}
-	return d.Do("GET", data)
+	return d.Do("GET", "", data)
 }
 
 func (a *App) DownloadURL(u string) (*Download, error) {

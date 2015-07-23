@@ -2,13 +2,8 @@ package upflare
 
 import (
 	"encoding/json"
-	"errors"
 	"math"
 	"time"
-)
-
-var (
-	ErrInvalidSignature = errors.New("upflare: invalid signature")
 )
 
 type Uploaded struct {

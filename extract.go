@@ -39,7 +39,12 @@ func (u *Extract) String() string {
 }
 
 func (a *App) Extract(u string) (*Extract, error) {
-	parsed, err := url.Parse(u)
+	normalized, err := purell.NormalizeURLString(u, purell.FlagsSafe|purell.FlagRemoveDotSegments)
+	if err != nil {
+		return nil, err
+	}
+
+	parsed, err := url.Parse(normalized)
 	if err != nil {
 		return nil, err
 	}
@@ -48,14 +53,11 @@ func (a *App) Extract(u string) (*Extract, error) {
 		return nil, ErrInvalidURL
 	}
 
-	if parsed.User != nil || parsed.Opaque != "" || parsed.Host == "" || parsed.Path == "" || parsed.Path[0] != '/' || parsed.Fragment != "" {
+	if parsed.User != nil || parsed.Opaque != "" || parsed.Host == "" || parsed.Path == "" || parsed.Path[0] != '/' {
 		return nil, ErrInvalidURL
 	}
 
-	normalized, err := purell.NormalizeURLString(parsed.String(), purell.FlagsSafe)
-	if err != nil {
-		return nil, err
-	}
+	parsed.Fragment = ""
 
 	nonce := make([]byte, 16)
 	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
@@ -64,7 +66,7 @@ func (a *App) Extract(u string) (*Extract, error) {
 
 	return &Extract{
 		App:       a,
-		url:       normalized,
+		url:       parsed.String(),
 		timestamp: time.Now().Unix(),
 		nonce:     base64.URLEncoding.EncodeToString(nonce),
 	}, nil

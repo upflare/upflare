@@ -78,7 +78,7 @@ var downloads = []struct {
 	{
 		key:    "key",
 		secret: "secret",
-		url:    "http://www.google.com/favicon.ico#test",
+		url:    "http://www.google.?com/favicon.ico",
 		err:    ErrInvalidURL,
 	},
 
